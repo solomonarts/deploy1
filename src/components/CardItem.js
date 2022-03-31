@@ -2,56 +2,29 @@ import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import Box from '@mui/material/Box';
-import Button from 'react-bootstrap/Button';
+import  OrderModal  from './OrderModal';
 
 
 function CardItem(props) {
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [boxlabel, setBoxLabel] = useState("")
   const [boximage, setBoxImage] = useState("")
+  const [open, setOpen] = useState(false)
 
-  const selectparcel = (label, image) => {
+  const selectparcel = (label, image, show) => {
     console.log("selected", label + image + show);
       setBoxImage(image)
       setBoxLabel(label)
+      setOpen(show)
 
-      OrderModal(show)
+  }
    
-}
 
-const OrderModal = (show) => {
-  console.log(show)
-  return (
-
-<>   
-
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  </>
-  );
-}
 
   return (
     <>
       <li className='cards__item'>
-        <div className='cards__item__link' onClick={()=> { setShow(true); selectparcel(props.label, props.src);}} >
+        <div className='cards__item__link' onClick={()=> { selectparcel(props.label, props.src, true);}} >
           <figure className='cards__item__pic-wrap' data-category={props.label}>
             <img
               className='cards__item__img'
@@ -64,7 +37,10 @@ const OrderModal = (show) => {
           </div>
 
         </div>
-      </li>     
+      </li>      
+
+      <OrderModal openModal={open} />
+
     </>
   );
 }
