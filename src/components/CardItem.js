@@ -1,50 +1,57 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import OrderModal from './OrderModal';
-import Modal from '@mui/material/Modal';
+import Modal from 'react-bootstrap/Modal'
 import Box from '@mui/material/Box';
+import Button from 'react-bootstrap/Button';
 
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 function CardItem(props) {
 
-  const [open, setOpen] = React.useState(props.openModal);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [boxlabel, setBoxLabel] = useState("")
   const [boximage, setBoxImage] = useState("")
 
   const selectparcel = (label, image) => {
-    console.log("selected", label + image);
-    if(label !== " " && image !== " ") {
-      handleOpen()
+    console.log("selected", label + image + show);
       setBoxImage(image)
       setBoxLabel(label)
-    } else {
-      handleClose()
-      setBoxImage("")
-      setBoxLabel("")
-    }
-  
+
+      OrderModal(show)
+   
 }
 
+const OrderModal = (show) => {
+  console.log(show)
+  return (
 
+<>   
+
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Modal heading</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleClose}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  </>
+  );
+}
 
   return (
     <>
       <li className='cards__item'>
-        <div className='cards__item__link' onClick={()=>selectparcel(props.label, props.src)} >
+        <div className='cards__item__link' onClick={()=> { setShow(true); selectparcel(props.label, props.src);}} >
           <figure className='cards__item__pic-wrap' data-category={props.label}>
             <img
               className='cards__item__img'
@@ -57,10 +64,7 @@ function CardItem(props) {
           </div>
 
         </div>
-      </li>
-
-     
-     
+      </li>     
     </>
   );
 }

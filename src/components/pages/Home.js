@@ -13,6 +13,7 @@ function Home() {
 
       <HomeCard />
 
+
       {/* <Footer /> */}
     </>
   );

@@ -1,31 +1,39 @@
-import React, { useEffect, useState } from "react";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
+// import React, { useEffect, useState } from "react";
+// import Box from '@mui/material/Box';
+// import Button from '@mui/material/Button';
+// import Typography from '@mui/material/Typography';
+// import TextField from '@mui/material/TextField';
+// import Modal from 'react-bootstrap/Modal'
+// import Button from 'react-bootstrap/Button'
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+// const OrderModal = (props) => {
+//   const [show, setShow] = useState(false);
 
-export default function OrderModal(props) {
-  const [open, setOpen] = React.useState(props.openModal);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+//   const handleClose = () => setShow(false);
+//   const handleShow = () => setShow(true);
 
-  return (
-    <div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
-      
-        </div>
-  );
-}
+//   return (
+
+//     <>
+//     <Button variant="primary" onClick={handleShow}>
+//       Launch demo modal
+//     </Button>
+    
+
+//     <Modal show={show} onHide={handleClose}>
+//       <Modal.Header closeButton>
+//         <Modal.Title>Modal heading</Modal.Title>
+//       </Modal.Header>
+//       <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+//       <Modal.Footer>
+//         <Button variant="secondary" onClick={handleClose}>
+//           Close
+//         </Button>
+//         <Button variant="primary" onClick={handleClose}>
+//           Save Changes
+//         </Button>
+//       </Modal.Footer>
+//     </Modal>
+//   </>
+//   );
+// }
