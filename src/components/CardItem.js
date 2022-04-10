@@ -136,7 +136,7 @@ function CardItem(props, { submitForm }) {
           <input
             className='form-input'
             type='text'
-            name='locationFrom'
+            name='from'
             placeholder='Enter your username'
             value={values.from}
             onChange={handleChange}
@@ -147,8 +147,8 @@ function CardItem(props, { submitForm }) {
           <label className='form-label'>To</label>
           <input
             className='form-input'
-            type='email'
-            name='locationTo'
+            type='text'
+            name='to'
             placeholder='Enter your email'
             value={values.to}
             onChange={handleChange}
@@ -159,7 +159,7 @@ function CardItem(props, { submitForm }) {
           <label className='form-label'>Description(optional)</label>
           <input
             className='form-input'
-            type='Parcel Description'
+            type='text'
             name='description'
             placeholder='Enter parcel Description'
             value={values.description}
@@ -172,7 +172,7 @@ function CardItem(props, { submitForm }) {
           <input
             className='form-input'
             type='text'
-            name='recepientName'
+            name='reciepientName'
             placeholder='Recepient Name'
             value={values.reciepientName}
             onChange={handleChange}
@@ -185,8 +185,8 @@ function CardItem(props, { submitForm }) {
           <input
             className='form-input'
             type='text'
-            name='recepientContact'
-            placeholder='Recepient Name'
+            name='reciepientContact'
+            placeholder='Recepient Contact'
             value={values.reciepientContact}
             onChange={handleChange}
           />

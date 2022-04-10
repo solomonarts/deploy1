@@ -16,13 +16,13 @@ export default function validateInfo(values) {
   } else if (values.from.length < 5) {
     errors.from = 'Too short';
   }
-  if (!values.receipientName) {
-    errors.reciepientName = 'Password is required';
+  if (!values.reciepientName) {
+    errors.reciepientName = 'Reciepient Name is required';
   } else if (values.reciepientName.length < 5) {
     errors.reciepientName = 'Too short';
   }
   if (!values.reciepientContact) {
-    errors.reciepientContact = 'Password is required';
+    errors.reciepientContact = 'Reciepient Contact is requried';
   } else if (values.reciepientContact.length < 5) {
     errors.reciepientContact = 'Too short';
   }

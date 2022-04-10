@@ -2,11 +2,8 @@ import { useState, useEffect } from 'react';
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
-    from: '',
-    to: '',
-    description: '',
-    reciepientName: '',
-    reciepientContact: ''
+    email: '',
+    password: ''
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,8 +24,14 @@ const useForm = (callback, validate) => {
 
     setErrors(validate(values));
     setIsSubmitting(true);
-    localStorage.setItem("USER_DETAILS", JSON.stringify(values))
-    console.log(values)
+    //localStorage.setItem("USER_DETAILS", JSON.stringify(values))
+    let userData = JSON.parse(localStorage.getItem("USER_DETAILS"))
+    if(values.email === userData.email && values.password === userData.password) {
+        console.log("Sucesssssssss")
+    } else {
+        console.log("Invalid password or email")
+    }
+    console.log("dddddd", userData);
   };
 
   useEffect(
