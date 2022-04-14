@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
@@ -28,8 +31,11 @@ const useForm = (callback, validate) => {
     let userData = JSON.parse(localStorage.getItem("USER_DETAILS"))
     if(values.email === userData.email && values.password === userData.password) {
         console.log("Sucesssssssss")
+        return toast("Logged in successfully");
     } else {
         console.log("Invalid password or email")
+        toast.error("Invalid password or email");
+
     }
     console.log("dddddd", userData);
   };
