@@ -1,27 +1,15 @@
-video {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: -1;
-}
-
 .hero-container {
   /* background-image: url('/images/slide1.jpg'); */
   height: 50vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  background-image: url("/images/slide1.jpeg"), linear-gradient(rgba(0, 0, 0, 0.83),rgba(0,0,0,0.5));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-.hero-container > img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
 
 .hero-container > h1 {
   color: #fff;

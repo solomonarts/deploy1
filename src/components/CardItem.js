@@ -20,7 +20,6 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 800,
-
 };
 
 
@@ -80,6 +79,7 @@ function CardItem(props, { submitForm }) {
         BackdropProps={{
           timeout: 500,
         }}
+        
       >
         <Fade in={open}>
           <Box sx={style}>

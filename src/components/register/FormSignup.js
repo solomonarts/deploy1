@@ -16,7 +16,7 @@ const FormSignup = ({ submitForm }) => {
           To start Moving Your Packages with us today, Sign up here.
         </h1>
         <div className='form-inputs'>
-          <label className='form-label'>Username</label>
+          <label className='form-label'>Full Name</label>
           <input
             className='form-input'
             type='text'
@@ -26,6 +26,30 @@ const FormSignup = ({ submitForm }) => {
             onChange={handleChange}
           />
           {errors.username && <p>{errors.username}</p>}
+        </div>
+        <div className='form-inputs'>
+          <label className='form-label'>Company Name</label>
+          <input
+            className='form-input'
+            type='text'
+            name='company_name'
+            placeholder='Enter your Company Name'
+            value={values.company_name}
+            onChange={handleChange}
+          />
+          {errors.company_name && <p>{errors.company_name}</p>}
+        </div>
+        <div className='form-inputs'>
+          <label className='form-label'>Physical Address</label>
+          <input
+            className='form-input'
+            type='text'
+            name='physical_address'
+            placeholder='Enter your Address'
+            value={values.physical_address}
+            onChange={handleChange}
+          />
+          {errors.physical_address && <p>{errors.physical_address}</p>}
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Email</label>
@@ -62,6 +86,18 @@ const FormSignup = ({ submitForm }) => {
             onChange={handleChange}
           />
           {errors.password2 && <p>{errors.password2}</p>}
+        </div>
+        <div className='form-inputs'>
+          <label className='form-label'>Telephone Number</label>
+          <input
+            className='form-input'
+            type='number'
+            name='telnumber'
+            placeholder='Enter telephone number'
+            value={values.telnumber}
+            onChange={handleChange}
+          />
+          {errors.telnumber && <p>{errors.telnumber}</p>}
         </div>
         <button className='form-input-btn' type='submit'>
           Sign up
