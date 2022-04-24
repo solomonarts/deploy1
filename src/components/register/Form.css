@@ -1,12 +1,25 @@
 .form-container {
-  margin: 0 auto;
-  width: 100%;
+  margin: auto;
+  width: 70%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
-  position: fixed;
-  border-radius: 10px;
-  height: 600px;
+  height: 650px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  background-image: url("/images/slide3.jpeg"), linear-gradient(rgb(0, 0, 0),rgb(110, 109, 109));
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(0.98);
+  background-position: center;
+}
+
+.reg_carousel {
+  width: 590px;
+  height: 500px;
+  top: 12%;
+  position: absolute;
+  color: #fff;
+  background: -webkit-linear-gradient(220deg, rgba(0, 0, 0, 0.7),rgba(110, 109, 109, 0.6));
+
 }
 
 .close-btn {
@@ -20,11 +33,7 @@
 }
 
 .form-content-left {
-  background: linear-gradient(
-    90deg,
-    rgb(80, 77, 77) 0%,
-    rgb(159, 166, 167) 100%
-  );
+  width: 10% !important;
   border-radius: 10px 0 0 10px;
   position: relative;
 }
@@ -58,7 +67,7 @@
 .form-content-right {
   border-radius: 0 10px 10px 0;
   position: relative;
-  background: linear-gradient(90deg, rgb(161, 161, 161) 0%, rgb(226, 226, 226) 100%);
+  background: linear-gradient(90deg, rgba(118, 118, 118, 0.822) 0%, rgba(226, 226, 226, 0.909) 100%);
 }
 
 .form {

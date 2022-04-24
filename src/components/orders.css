@@ -1,0 +1,19 @@
+.aside-left {
+    width: 20%;
+    padding: 15px;
+    height: fit-content;
+    float: left;
+    font-style: italic;
+    background-color: rgb(94, 94, 94);
+  }
+
+.aside-right {
+    width: 20%;
+    padding: 15px;
+    height: fit-content;
+    float: right;
+    font-style: italic;
+    background-color: rgb(223, 223, 223);
+  }
+
+
