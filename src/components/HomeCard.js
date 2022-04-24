@@ -27,6 +27,7 @@ export default function HomeCard() {
               src={parcel.image}
               text={parcel.text}
               label={parcel.label}
+              // {mm}
             />)}
        
       </div>
