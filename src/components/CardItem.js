@@ -13,6 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import './register/Form.css'
 import useForm from './submitdetails/Submit';
 import validate from './submitdetails/validateInfo';
+import { Container, Row, Col, Stack } from 'react-bootstrap';
 
 const style = {
   position: 'relative',
@@ -58,8 +59,9 @@ function CardItem(props, { submitForm }) {
           <figure className='cards__item__pic-wrap' data-category={props.label}>
             <img
               className='cards__item__img'
-              alt='Travel Image'
               src={props.src}
+              alt='Travel Image'
+              
             />
           </figure>
           <div className='cards__item__info'>

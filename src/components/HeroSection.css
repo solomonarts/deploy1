@@ -1,15 +1,21 @@
 .hero-container {
   /* background-image: url('/images/slide1.jpg'); */
-  height: 50vh;
+  height: 60vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-image: url("/images/slide1.jpeg"), linear-gradient(rgba(0, 0, 0, 0.83),rgba(0,0,0,0.5));
+  background-image: url("../images/slide1.jpeg"), linear-gradient(rgba(0, 0, 0, 0.83),rgba(0,0,0,0.5));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  margin-bottom: 20px;
 }
 
+#Home {
+  height: 750px !important;
+  padding: 0 0 10% 0;
+  background-color: rgba(244, 161, 131, 0.072);
+}
 
 .hero-container > h1 {
   color: #fff;

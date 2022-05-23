@@ -1,114 +1,91 @@
 import React from 'react';
 import './Footer.css';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
+import {Container, Row, Col, Stack} from 'react-bootstrap';
+import {FaInstagram} from 'react-icons/fa';
+import {ImYoutube2, ImTwitter, ImFacebook} from 'react-icons/im'
+import { IconButton, Typography } from '@mui/material';
 
-function Footer() {
+const Footer = () => {
 
   const today = new Date()
   const CurrentYear = today.getFullYear();
 
   return (
-    <div className='footer-container'>
-      <section className='footer-subscription'>
-        <p className='footer-subscription-heading'>
-          Get Notifications about new Products and Services.
-        </p>
-        <p className='footer-subscription-text'>
-          You can unsubscribe at any time.
-        </p>
-        <div className='input-areas'>
-          <form>
-            <input
-              className='footer-input'
-              name='email'
-              type='email'
-              placeholder='Your Email'
-            />
-            <Button buttonStyle='btn--outline'>Subscribe</Button>
-          </form>
-        </div>
-      </section>
+    <div className='footer-container' id='Contact'>
       <div className='footer-links'>
-        <div className='footer-link-wrapper'>
+        <Container>
+          <Row>
+        {/* <div className='footer-link-wrapper'> */}
+        <Col>
           <div className='footer-link-items'>
             <h2>About Us</h2>
-            <Link to='/sign-up'>Our Services</Link>
-            <Link to='/'>Testimonials</Link>
-            <Link to='/'>Careers</Link>
-            <Link to='/'>Major Clients</Link>
-            <Link to='/'>Terms of Service</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Our Services</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Testimonials</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Careers</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Major Clients</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Terms of Service</Link>
           </div>
+          </Col>
+          <Col>
           <div className='footer-link-items'>
             <h2>Contact Us</h2>
-            <Link to='/'>Contact</Link>
-            <Link to='/'>Support</Link>
-            <Link to='/'>Destinations</Link>
-            <Link to='/'>Suggestions</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Contact</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Support</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Destinations</Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>Suggestions</Link>
           </div>
-        </div>
+          </Col>
+        {/* </div> */}
+        <Col>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>Social Media</h2>
-            <Link to='/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
-            <Link to='/'>Twitter</Link>
+            <Stack gap={2} direction='horizontal'>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>
+              <IconButton>
+                <FaInstagram color='white'/>
+              </IconButton>
+            </Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>
+              <IconButton size='small'>
+                <ImFacebook color='white'/>
+              </IconButton>
+            </Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>
+              <IconButton size='large'>
+                <ImYoutube2 color='white'/>
+              </IconButton>
+            </Link>
+            <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000}>
+              <IconButton>
+                <ImTwitter color='white'/>
+              </IconButton>
+            </Link>
+            </Stack>
           </div>
         </div>
+        </Col>
+        </Row>
+        </Container>
       </div>
       <section className='social-media'>
-        <div className='social-media-wrap'>
+        <Container>
+          <Row>
+        <Col>
           <div className='footer-logo'>
-            <Link to='/' className='social-logo'>
-              SGA
-              
+          <Link activeClass="active" to="home" spy={true} smooth={true} offset={50} duration={500} delay={1000} className='social-logo'>
+              SGA     
             </Link>
           </div>
-          <small className='website-rights'>SGA © {CurrentYear}</small>
-          <div className='social-icons'>
-            <Link
-              className='social-icon-link facebook'
-              to='/'
-              target='_blank'
-              aria-label='Facebook'
-            >
-              <i className='fab fa-facebook-f' />
-            </Link>
-            <Link
-              className='social-icon-link instagram'
-              to='/'
-              target='_blank'
-              aria-label='Instagram'
-            >
-              <i className='fab fa-instagram' />
-            </Link>
-            <Link
-              className='social-icon-link youtube'
-              to='/'
-              target='_blank'
-              aria-label='Youtube'
-            >
-              <i className='fab fa-youtube' />
-            </Link>
-            <Link
-              className='social-icon-link twitter'
-              to='/'
-              target='_blank'
-              aria-label='Twitter'
-            >
-              <i className='fab fa-twitter' />
-            </Link>
-            <Link
-              className='social-icon-link twitter'
-              to='/'
-              target='_blank'
-              aria-label='LinkedIn'
-            >
-              <i className='fab fa-linkedin' />
-            </Link>
-          </div>
-        </div>
+          </Col>
+
+          <Col>
+          <Typography variant='body2' className='website-rights' sx={{margin:'20px auto'}}>SGA © {CurrentYear}</Typography>
+          </Col>
+        </Row>
+        </Container>
       </section>
     </div>
   );

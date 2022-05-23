@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from "axios";
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
@@ -14,7 +15,7 @@ const useForm = (callback, validate) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = e => {
-    
+
     const { name, value } = e.target;
     setValues({
       ...values,
@@ -29,7 +30,17 @@ const useForm = (callback, validate) => {
     setErrors(validate(values));
     setIsSubmitting(true);
     localStorage.setItem("USER_DETAILS", JSON.stringify(values))
-    console.log(values)
+    // console.log(values)
+    axios
+      ({
+        method: 'post',
+        url: "http://localhost:8080/API/data.php",
+        headers: { 'content-type': 'application/json' },
+        data: values
+      })
+      .then(res => console.log("success", res.data))
+      .catch(err => console.log("error", err))
+
   };
 
   useEffect(
