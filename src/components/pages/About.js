@@ -44,6 +44,22 @@ const About = () => {
                     </Typography>
                 </Col>
             </Row>
+            <Row>
+                <Col>
+                <Typography variant='heading1' sx={{paddingTop:'10px'}}>
+                DISTRIBUTION AND SUPPLY CHAIN
+                </Typography>
+
+                <Typography variant='body1' sx={{color:'rgba(220, 127, 20, 0.546)', paddingTop:'5px'}}>
+                We avail you a fully dedicated van / truck with a dedicated driver on a monthly basis to cater for all your daily Kampala delivery services within a radius of 25 Km from the Central Business Center / Point of Dispatch
+                </Typography>
+
+                <Typography variant='body1' sx={{color:'rgba(220, 127, 20, 0.546)', paddingTop:'5px'}}>
+                For consignments destined for far destinations, we shall consider the one charge for each destination as per the agreed upon tariff for the various tonnages and ensure delivery within a 24 hour turnaround time.
+                </Typography>
+                
+                </Col>
+            </Row>
         </Container>
 
     </div>

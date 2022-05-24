@@ -5,20 +5,40 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Footer from './components/Footer';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import SignUp from './components/pages/SignUp';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap'
+import Orders from './components/pages/Orders';
 
 
 function App() {
   return (
     <>
-        <Navbar />
-
-        <Home />
-
-        <About />
-
-        <Footer />
+      <Router>
+        <Container className='main_container'>
+          <Row>
+            <Col>
+            <Navbar />
+            </Col>
+          </Row>
         
+        <Row>
+          <Col>
+        <Routes>
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/Dashboard' element={<Orders />} />
+        </Routes>
+        </Col>
+        </Row>
+        <Row>
+          <Col>
+          
+          </Col>
+        </Row>
+        </Container>
+        <Footer />
+      </Router>
     </>
   );
 }

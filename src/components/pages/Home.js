@@ -2,6 +2,7 @@ import React from 'react';
 import '../../App.css';
 import HeroSection from '../HeroSection';
 import HomeCard from '../HomeCard';
+import About from './About';
 
 function Home() {
   return (
@@ -10,6 +11,9 @@ function Home() {
 
 
       <HomeCard />
+
+      <About />
+
          
     </div>
   );

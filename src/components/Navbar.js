@@ -13,14 +13,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import sgalogo from '../images/sga_courier.png';
-import {Link} from 'react-scroll';
+import { Link } from 'react-scroll';
+import { useNavigate } from 'react-router-dom';
 
 const pages = ['Home', 'About Us', 'Contact'];
-const settings = ['My Dashboard', 'Signup/login', 'Logout'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -75,7 +77,7 @@ const Navbar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link activeClass="active" to={page} spy={true} smooth={true} offset={50} duration={500}>
+                  <Link activeClass="active" to={page} spy={true} smooth={true} offset={50} duration={500} onClick={()=>navigate('/')}>
                   <Typography sx={{color:'black'}} textAlign="center">{page}</Typography>
                   </Link>
                 </MenuItem>
@@ -103,7 +105,7 @@ const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link activeClass="active" to={page} spy={true} smooth={true} offset={-60} duration={200}>
+              <Link activeClass="active" to={page} spy={true} smooth={true} offset={-60} duration={200} onClick={()=>navigate('/')}>
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -137,11 +139,25 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+            
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to='/' spy={true} onClick={()=>navigate('/Dashboard')}>
+                  <Typography textAlign="center">My Dashboard</Typography>
+                  </Link>
                 </MenuItem>
-              ))}
+
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to='/' spy={true} onClick={()=>navigate('/signup')}>
+                  <Typography textAlign="center">SignUp/Login</Typography>
+                  </Link>
+                </MenuItem>
+
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to='/' spy={true} onClick={()=>navigate('/')}>
+                  <Typography textAlign="center">Logout</Typography>
+                  </Link>
+                </MenuItem>
+           
             </Menu>
           </Box>
         </Toolbar>

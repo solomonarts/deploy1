@@ -3,4 +3,11 @@
     background-color: rgba(191, 189, 189, 0.121);
     padding: 5%;
     /* color: rgb(246, 240, 234); */
+    position: relative;
+    margin-top: 10%;
+
+}
+
+.about_us .row .col {
+    padding-bottom: 10px;
 }
