@@ -16,12 +16,55 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { Container, Row, Col } from 'react-bootstrap';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import { Chart, registerables } from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
 
 const drawerWidth = 240;
+
+const cardData = [
+  {}
+]
+ 
+const card = (
+  <React.Fragment>
+    <CardContent>
+      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        Word of the Day
+      </Typography>
+      <Typography variant="h5" component="div">
+        blent
+      </Typography>
+      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        adjective
+      </Typography>
+      <Typography variant="body2">
+        well meaning and kindly.
+        <br />
+        {'"a benevolent smile"'}
+      </Typography>
+    </CardContent>
+    <CardActions>
+      <Button size="small">Learn More</Button>
+    </CardActions>
+  </React.Fragment>
+);
 
 function Orders(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [openNew, setOpenNew] = React.useState(false)
+
+  Chart.register(...registerables);
+
+  const OpenNewSection = () => {
+    setOpenNew(true)
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -32,29 +75,67 @@ function Orders(props) {
       <Toolbar />
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        
+          <ListItem disablePadding onClick={OpenNewSection}>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <InboxIcon /> 
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary="New" />
             </ListItemButton>
           </ListItem>
-        ))}
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon /> 
+              </ListItemIcon>
+              <ListItemText primary="Pending" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon /> 
+              </ListItemIcon>
+              <ListItemText primary="Completed" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon /> 
+              </ListItemIcon>
+              <ListItemText primary="History" />
+            </ListItemButton>
+          </ListItem>
+    
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+           <MailIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary="Incoming Mail" />
             </ListItemButton>
           </ListItem>
-        ))}
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+           <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Read Mail" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+           <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Trash Mail" />
+            </ListItemButton>
+          </ListItem>
       </List>
     </div>
   );
@@ -64,10 +145,10 @@ function Orders(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      
+
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{ width: { sm: 80 } }}
         aria-label="mailbox folders"
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -102,33 +183,61 @@ function Orders(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+       {openNew? <Container >
+        <Row>
+        <Row>
+            <Col>
+            <Row>
+            <Box sx={{ minWidth: 275, marginBottom:'10px' }}>
+                <Card variant="outlined">{card}</Card>
+              </Box>
+            </Row>
+            <Row>
+            <Box sx={{ minWidth: 275 }}>
+                <Card variant="outlined">{card}</Card>
+              </Box>
+            </Row>
+              
+            </Col>
+            <Col>
+              <Box sx={{ minWidth: 275 }}>
+                <Card variant="outlined" sx={{height:'400px', padding:'10px'}}>{card}</Card>
+              </Box>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Box sx={{ minWidth: 275, paddingTop:'10px' }}>
+                <Card variant="outlined" sx={{height:'400px'}}>
+                <Line
+                            data={{
+                                labels: ['Seed', 'Private', 'Public', 'Liquidity', 'Liquidity Mining', 'Platform Rewards', 'Partnerships', 'Marketing and further Dev', 'Reserve', 'Advisors', 'Team'],
+                                datasets: [
+                                    {
+                                        backgroundColor: [
+                                            '#1976d2',
+                                            '#0277bd',
+                                            '#0288d1',
+                                            '#039be5',
+                                            '#03a9f4',
+                                            '#29b6f6',
+                                            '#4fc3f7',
+                                            '#90caf9',
+                                            '#64b5f6',
+                                            '#42a5f5',
+                                            '#2196f3'],
+                                        data: [12500000, 15500000, 1000000, 1000000, 10000000, 10000000, 5000000, 10000000, 10000000, 6000000, 9000000],
+                                    },
+                                ],
+                            }}
+                        />
+                </Card>
+              </Box>
+            </Col>
+            </Row>
+            </Row>
+            
+        </Container> : "No new consignments"}
       </Box>
     </Box>
   );
