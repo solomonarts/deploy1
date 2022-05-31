@@ -23,23 +23,33 @@ const useForm = (callback, validate) => {
     });
 
   };
+  const rand = () => Math.random(0).toString(36).substr(2);
+  const token = (length) => (rand() + rand() + rand() + rand()).substr(0, length);
 
   const handleSubmit = e => {
     e.preventDefault();
 
     setErrors(validate(values));
-    setIsSubmitting(true);
-    localStorage.setItem("USER_DETAILS", JSON.stringify(values))
-    // console.log(values)
-    axios
-      ({
-        method: 'post',
-        url: "http://localhost:8080/API/data.php",
-        headers: { 'content-type': 'application/json' },
-        data: values
-      })
-      .then(res => console.log("success", res.data))
-      .catch(err => console.log("error", err))
+    if (validate(values).length > 0) {
+      console.log(validate(values))
+    } else {
+      setIsSubmitting(true);
+      localStorage.setItem("USER_DETAILS", JSON.stringify(values))
+      localStorage.setItem("USER_TOKEN", JSON.stringify(token(40)))
+      console.log(token(40));
+      console.log(values)
+      
+      axios
+        ({
+          method: 'post',
+          url: "http://localhost:8080/API/data.php",
+          headers: { 'content-type': 'application/json' },
+          data: values
+        })
+        .then(res => console.log("success", res.data))
+        .catch(err => console.log("error", err))
+    }
+
 
   };
 

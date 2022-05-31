@@ -13,6 +13,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -22,7 +23,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import { Chart, registerables } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Line, Doughnut } from 'react-chartjs-2';
+import axios from 'axios';
+import Tables from '../dashcomponents/Tables';
+import OrderCards from '../dashcomponents/OrderCards';
 
 
 const drawerWidth = 240;
@@ -30,35 +34,63 @@ const drawerWidth = 240;
 const cardData = [
   {}
 ]
- 
-const card = (
-  <React.Fragment>
-    <CardContent>
-      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Word of the Day
-      </Typography>
-      <Typography variant="h5" component="div">
-        blent
-      </Typography>
-      <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        adjective
-      </Typography>
-      <Typography variant="body2">
-        well meaning and kindly.
-        <br />
-        {'"a benevolent smile"'}
-      </Typography>
-    </CardContent>
-    <CardActions>
-      <Button size="small">Learn More</Button>
-    </CardActions>
-  </React.Fragment>
-);
 
 function Orders(props) {
+
+  const [clients, SetClients] = React.useState([]);
+  const [packages, SetPackages] = React.useState([]);
+
+  const getClients = () => {
+    axios
+        ({
+          method: 'get',
+          url: "http://localhost:8080/API/users.php",
+          headers: { 'content-type': 'application/json' },
+        })
+        .then(res => {
+          console.log("res", res);
+          SetClients(res.data)
+        })
+        .catch(err => console.log("error", err))
+    }
+
+  const getPackages = () => {
+    axios
+        ({
+          method: 'get',
+          url: "http://localhost:8080/API/packages.php",
+          headers: { 'content-type': 'application/json' },
+        })
+        .then(res => {
+          console.log("res", res);
+          SetPackages(res.data)
+        })
+        .catch(err => console.log("error", err))
+    }
+
+  React.useEffect(() => {
+    getClients();
+    getPackages()
+  }, [])
+
+
+  
+  
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [openNew, setOpenNew] = React.useState(false)
+  const [orders, setOrders] = React.useState(false);
+  const [users, setUsers] = React.useState(false);
+
+  const openAnalytics = () => {
+    setOrders(true)
+    setUsers(false)
+  }
+
+  const openUsers = () => {
+    setUsers(true)
+    setOrders(false)
+  }
 
   Chart.register(...registerables);
 
@@ -76,12 +108,12 @@ function Orders(props) {
       <Divider />
       <List>
         
-          <ListItem disablePadding onClick={OpenNewSection}>
+          <ListItem disablePadding onClick={openAnalytics}>
             <ListItemButton>
               <ListItemIcon>
                 <InboxIcon /> 
               </ListItemIcon>
-              <ListItemText primary="New" />
+              <ListItemText primary="Analytics" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -89,7 +121,7 @@ function Orders(props) {
               <ListItemIcon>
                 <InboxIcon /> 
               </ListItemIcon>
-              <ListItemText primary="Pending" />
+              <ListItemText primary="New" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -112,12 +144,12 @@ function Orders(props) {
       </List>
       <Divider />
       <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={openUsers}>
             <ListItemButton>
               <ListItemIcon>
-           <MailIcon />
+           <AccountCircle />
               </ListItemIcon>
-              <ListItemText primary="Incoming Mail" />
+              <ListItemText primary="Users" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -183,25 +215,47 @@ function Orders(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-       {openNew? <Container >
+       {orders ? <Container >
         <Row>
         <Row>
             <Col>
             <Row>
             <Box sx={{ minWidth: 275, marginBottom:'10px' }}>
-                <Card variant="outlined">{card}</Card>
+                <OrderCards orders={packages}/>
+              </Box>
+            </Row>
+            <Row>
+            <Box sx={{ minWidth: 275, marginBottom:'10px' }}>
+                {/* <Card variant="outlined">{card2}</Card> */}
               </Box>
             </Row>
             <Row>
             <Box sx={{ minWidth: 275 }}>
-                <Card variant="outlined">{card}</Card>
+                {/* <Card variant="outlined">{card3}</Card> */}
               </Box>
             </Row>
               
             </Col>
             <Col>
               <Box sx={{ minWidth: 275 }}>
-                <Card variant="outlined" sx={{height:'400px', padding:'10px'}}>{card}</Card>
+                <Card variant="outlined" sx={{height:'550px', padding:'10px'}}>
+                <Doughnut
+                            data={{
+                                labels: ["New", "Completed", "Pending", "Cancelled"],
+                                datasets: [
+                                    {
+                                        backgroundColor: [
+                                            '#1976d2',
+                                            '#0277bd',
+                                            '#0288d1',
+                                            '#039be5',
+                                            ],
+                                        data: [120, 250, 20, 5],
+                                    },
+                                ],
+                            }}
+                        />
+                </Card>
               </Box>
             </Col>
           </Row>
@@ -237,7 +291,13 @@ function Orders(props) {
             </Row>
             </Row>
             
-        </Container> : "No new consignments"}
+        </Container> :
+
+        /* users */
+
+        users? <Tables clients={clients} />
+         : "No Connection" }
+
       </Box>
     </Box>
   );

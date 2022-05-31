@@ -1,4 +1,4 @@
-import  React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -23,31 +23,36 @@ export default function HomeCard() {
     image4,
   ])
   const [packages, setPackages] = useState([
-    {"label":"2X2 Box", "image":images[0], "text": "Parcels shipped by road"},
-    {"label":"4X5 Box", "image":images[1], "text": "Package charged per KG"},
-    {"label":"6X8 Box", "image":images[2], "text": "Charges apply based on Volumetric scale"},
-    {"label":"9X9 Box", "image":images[3], "text": "Larger packages are charged $4 for every Extra KG"}
-    ])
+    { "label": "2X2 Box", "image": images[0], "text": "Parcels shipped by road" },
+    { "label": "4X5 Box", "image": images[1], "text": "Package charged per KG" },
+    { "label": "6X8 Box", "image": images[2], "text": "Charges apply based on Volumetric scale" },
+    { "label": "9X9 Box", "image": images[3], "text": "Larger packages are charged $4 for every Extra KG" }
+  ])
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  function submitForm() {
+    setIsSubmitted(true);
+  }
 
   return (
-      <Container className='Home-Card-Container'>
+    <Container className='Home-Card-Container'>
 
-        <Row>
-    
-        {packages.map((parcel, index)=><Col>
-        <CardItem
-              key={index}
-              src={parcel.image}
-              text={parcel.text}
-              label={parcel.label}
-              
-            />
-            </Col>)}
+      <Row>
 
-            </Row>
-       
-      </Container>
-    
+        {packages.map((parcel, ind) => <Col>
+          <CardItem
+            key={ind}
+            src={parcel.image}
+            text={parcel.text}
+            label={parcel.label}
+            submitForm={submitForm}
+          />
+        </Col>)}
+
+      </Row>
+
+    </Container>
+
   );
 }

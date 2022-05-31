@@ -16,6 +16,7 @@ import sgalogo from '../images/sga_courier.png';
 import { Link } from 'react-scroll';
 import { useNavigate } from 'react-router-dom';
 
+
 const pages = ['Home', 'About Us', 'Contact'];
 
 const Navbar = () => {
@@ -23,6 +24,12 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const navigate = useNavigate();
+
+  const Logout = () => {
+    localStorage.removeItem('USER_DETAILS');
+    localStorage.removeItem('USER_TOKEN');
+    navigate('/Signup');
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -153,7 +160,7 @@ const Navbar = () => {
                 </MenuItem>
 
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to='/' spy={true} onClick={()=>navigate('/')}>
+                  <Link to='/' spy={true} onClick={Logout}>
                   <Typography textAlign="center">Logout</Typography>
                   </Link>
                 </MenuItem>

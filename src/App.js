@@ -9,6 +9,8 @@ import SignUp from './components/pages/SignUp';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap'
 import Orders from './components/pages/Orders';
+import PrivateRoute from './PrivateRoute';
+import FormLogin from './components/register/login';
 
 
 function App() {
@@ -26,8 +28,12 @@ function App() {
           <Col>
         <Routes>
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/Login' element={<FormLogin />} />
+          <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />
           <Route path='/Dashboard' element={<Orders />} />
+          </Route>
+          
         </Routes>
         </Col>
         </Row>

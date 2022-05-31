@@ -10,6 +10,17 @@ export default function validateLogin(values) {
     } else if (values.to.length < 6) {
       errors.to = 'Location requres more detail';
     }
+
+    if (!values.package) {
+      errors.package = 'Package Type Required';
+    }
+    
+    if (!values.charges) {
+      errors.charges = 'Mode of transport Required';
+    }
+    if (!values.paymentmethod) {
+      errors.paymentmethod = 'Payment Method Required';
+    }
   
     if (!values.from) {
       errors.from = 'Please enter pickup location';

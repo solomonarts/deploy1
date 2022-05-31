@@ -3,6 +3,8 @@ import validate from './validateInfo';
 import { Container, Row, Col, Stack } from 'react-bootstrap';
 import useForm from './useForm';
 import './Form.css';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const FormSignup = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(
@@ -10,19 +12,21 @@ const FormSignup = ({ submitForm }) => {
     validate
   );
 
+  const navigate = useNavigate();
+
   return (
     <div className='form-content-right'>
-      <form onSubmit={handleSubmit} className='form' noValidate>
+ 
         <Container>
-          <Row>
+          <Row style={{marginBottom:'10px'}}>
             <Col>
-              <h1>
+              <h4>
                 To start Moving Your Packages with us today, Sign up here.
-              </h1>
+              </h4>
             </Col>
           </Row>
 
-          <Row>
+          <Row style={{marginBottom:'10px'}}>
             <Col>
               <div className='form-inputs'>
                 <label className='form-label'>Full Name</label>
@@ -55,7 +59,7 @@ const FormSignup = ({ submitForm }) => {
           </Row>
 
 
-          <Row>
+          <Row style={{marginBottom:'10px'}}>
             <Col>
 
               <div className='form-inputs'>
@@ -73,7 +77,7 @@ const FormSignup = ({ submitForm }) => {
             </Col>
 
           </Row>
-          <Row>
+          <Row style={{marginBottom:'10px'}}>
             <Col>
 
               <div className='form-inputs'>
@@ -91,7 +95,7 @@ const FormSignup = ({ submitForm }) => {
             </Col>
 
           </Row>
-          <Row>
+          <Row style={{marginBottom:'10px'}}>
             <Col>
               <div className='form-inputs'>
                 <label className='form-label'>Password</label>
@@ -108,7 +112,7 @@ const FormSignup = ({ submitForm }) => {
             </Col>
 
           </Row>
-          <Row>
+          <Row style={{marginBottom:'10px'}}>
             <Col>
               <div className='form-inputs'>
                 <label className='form-label'>Confirm Password</label>
@@ -126,7 +130,7 @@ const FormSignup = ({ submitForm }) => {
 
           </Row>
 
-          <Row>
+          <Row style={{marginBottom:'20px'}}>
             <Col>
               <div className='form-inputs'>
                 <label className='form-label'>Telephone Number</label>
@@ -143,33 +147,31 @@ const FormSignup = ({ submitForm }) => {
             </Col>
           </Row>
 
-          <Row>
+          <Row style={{marginBottom:'20px', alignContent:'center'}}>
             <Col>
 
-              <button className='form-input-btn' type='submit'>
+              <Button variant='contained' size='large' onClick={handleSubmit}>
                 Sign up
-              </button>
+              </Button>
             </Col>
 
             <Col>
-              <button className='form-input-btn' type='reset'>
+              <Button variant='contained' size='large' type='reset'>
                 Reset
-              </button>
+              </Button>
             </Col>
           </Row>
 
           <Row>
             <Col>
               <span className='form-input-login'>
-                Already have an account? Login <a href='#'>here</a>
+                Already have an account? Login <span onClick={()=>navigate('/Login')}>here</span>
               </span>
             </Col>
           </Row>
 
-
-
         </Container>
-      </form>
+
     </div>
   );
 };

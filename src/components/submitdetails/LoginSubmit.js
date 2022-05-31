@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const useForm = (callback, validate) => {
@@ -22,6 +23,8 @@ const useForm = (callback, validate) => {
 
   };
 
+  const navigate = useNavigate()
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -30,11 +33,13 @@ const useForm = (callback, validate) => {
     //localStorage.setItem("USER_DETAILS", JSON.stringify(values))
     let userData = JSON.parse(localStorage.getItem("USER_DETAILS"))
     if(values.email === userData.email && values.password === userData.password) {
+        navigate('/')
         console.log("Sucesssssssss")
         return toast("Logged in successfully");
     } else {
         console.log("Invalid password or email")
         toast.error("Invalid password or email");
+        navigate('/Signup')
 
     }
     console.log("dddddd", userData);
